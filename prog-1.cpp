@@ -48,14 +48,15 @@ public:
     
     void resize(size_t n)
     {
-        if(n > capacity);
+        if(n > capacity)
         {
-            T * new_data = new T[n];
+            size_t nsz = (capacity + 1) * 2;
+            T * new_data = new T[nsz];
             for(size_t i = 0; i < num_entries; i++)
                 new_data[i] = data[i];
             delete [] data;
             data = new_data;
-            capacity = n;
+            capacity = nsz;
         }
     }
 
@@ -80,7 +81,7 @@ int main()
     a.append(10);
     a.append(20);
 
-    for(size_t i = 0; i < 1000; i++)
+    for(size_t i = 0; i < 1000000; i++)
         a.append(i);
 
     long sum = 0;

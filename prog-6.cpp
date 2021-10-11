@@ -16,15 +16,16 @@ struct array
         data = new int[n];
     }
 
-    array& operator=(const array& cop) {
-        n = cop.n;
-        data = new int [n];
+    array(const array& copy) {
+        n = copy.n;
+        data = new int[n];
 
-        for (size_t i = 0; i < n; i++) {
-            data[i] = cop[i];
-        }
+        for (size_t i = 0; i < n; i++) 
+            data[i] = copy.data[i];
+    }
 
-        return *this;
+    ~array() {
+        delete[] data;
     }
 
     const int& operator[](size_t i) const
@@ -65,7 +66,7 @@ void print(const array& c)
 // template<class T>
 void print(double x, std::string extra = "\n")
 {
-    std::cout << x << extra;
+    std::cout << x << extra;    // use as a string
 }
 
 int main()
@@ -85,11 +86,9 @@ int main()
 
     print(c);
     print(d);
-    std::cout <<  "f\n" << std::endl;
 
     print(0, ", ");
     print(1);
 
     return 0;
 }
-
